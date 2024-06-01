@@ -40,11 +40,27 @@ const SearchBar = () => (
   </View>
 );
 
+const CategorySection = () => (
+  <View style={styles.categories}>
+    <Text style={styles.sectionTitle}>Categories</Text>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      {categories.map((category, index) => (
+        <View style={styles.categoryItem} key={index}>
+          <Text style={styles.categoryTitle}>{category.name}</Text>
+          <Text>{category.tasks}</Text>
+          <Image style={styles.categoryImage} source={category.image} />
+        </View>
+      ))}
+    </ScrollView>
+  </View>
+);
+
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
       <SearchBar />
+      <CategorySection />
     </SafeAreaView>
   );
 };
@@ -97,6 +113,29 @@ const styles = StyleSheet.create({
     backgroundColor: "#F0522F",
     borderRadius: 10,
     padding: 10,
+  },
+  categories: {
+    marginTop: 25,
+  },
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+  },
+  categoryItem: {
+    width: 140,
+    backgroundColor: "#F9FBFF",
+    borderRadius: 15,
+    padding: 15,
+    marginRight: 20,
+    alignItems: "center",
+  },
+  categoryTitle: {
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  categoryImage: {
+    width: 80,
+    height: 80,
   },
 });
 
