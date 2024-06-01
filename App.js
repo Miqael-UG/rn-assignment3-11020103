@@ -16,6 +16,12 @@ import {
   faSliders,
 } from "@fortawesome/free-solid-svg-icons";
 
+const renderTask = ({ item }) => (
+  <View style={styles.task}>
+    <Text style={styles.taskText}>{item}</Text>
+  </View>
+);
+
 const Header = () => (
   <View style={styles.header}>
     <View>
@@ -55,12 +61,24 @@ const CategorySection = () => (
   </View>
 );
 
+const TaskSection = () => (
+  <View style={styles.tasksSection}>
+    <Text style={styles.sectionTitle}>Ongoing Task</Text>
+    <FlatList
+      data={tasks}
+      renderItem={renderTask}
+      keyExtractor={(item, index) => index.toString()}
+    />
+  </View>
+);
+
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
       <SearchBar />
       <CategorySection />
+      <TaskSection />
     </SafeAreaView>
   );
 };
@@ -118,6 +136,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   sectionTitle: {
+    marginBottom: 10,
     fontSize: 22,
     fontWeight: "bold",
   },
@@ -136,6 +155,25 @@ const styles = StyleSheet.create({
   categoryImage: {
     width: 80,
     height: 80,
+  },
+  tasksSection: {
+    marginTop: 15,
+    flex: 1,
+  },
+  tasks: {
+    marginTop: 5,
+  },
+  task: {
+    backgroundColor: "#F9FBFF",
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 10,
+    borderColor: "#D1E8BA",
+    borderWidth: 1,
+  },
+  taskText: {
+    fontSize: 17,
+    fontWeight: "bold",
   },
 });
 
